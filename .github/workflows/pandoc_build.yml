@@ -31,9 +31,10 @@ jobs:
         run: |
             which xelatex
             which pdflatex
+            pandoc -v
             
       - name: Generate pdf
         run: |
-          pandoc --toc --top-level-division=chapter -f markdown -t pdf README.md Environment_Setup.md C_Language_Info.md Nasm.md Debug.md Multiboot.md Framebuffer.md DrawingTextOnFB.md GDT.md HigherHalf.md InterruptHandling.md RSDP_and_RSDT.md APIC.md Add_Keyboard_Support/README.md Add_Keyboard_Support/InterruptHandling.md Add_Keyboard_Support/DriverImplementation.md Memory_Management/README.md Memory_Management/Physical_Memory.md Memory_Management/Paging.md Memory_Management/Heap_Allocation.md pandoc.yaml -o book3.pdf --pdf-engine=/usr/bin/pdflatex
+          pandoc --toc --top-level-division=chapter -f markdown -t pdf README.md Environment_Setup.md C_Language_Info.md Nasm.md Debug.md Multiboot.md Framebuffer.md DrawingTextOnFB.md GDT.md HigherHalf.md InterruptHandling.md RSDP_and_RSDT.md APIC.md Add_Keyboard_Support/README.md Add_Keyboard_Support/InterruptHandling.md Add_Keyboard_Support/DriverImplementation.md Memory_Management/README.md Memory_Management/Physical_Memory.md Memory_Management/Paging.md Memory_Management/Heap_Allocation.md pandoc.yaml -o book3.pdf --pdf-engine=pdflatex
       
             
