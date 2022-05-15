@@ -22,21 +22,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - name: Print output
-        uses: docker://pandoc/core:2.9      
-        with:
-          args: >-
-            --toc 
-            --top-level-division=chapter 
-            -f markdown 
-            -t pdf 
-            README.md Environment_Setup.md C_Language_Info.md Nasm.md Debug.md Multiboot.md Framebuffer.md DrawingTextOnFB.md GDT.md HigherHalf.md InterruptHandling.md RSDP_and_RSDT.md APIC.md Add_Keyboard_Support/README.md Add_Keyboard_Support/InterruptHandling.md Add_Keyboard_Support/DriverImplementation.md Memory_Management/README.md Memory_Management/Physical_Memory.md Memory_Management/Paging.md Memory_Management/Heap_Allocation.md pandoc.yaml 
-            -o book3.pdf --pdf-engine==/usr/bin/xelatex
+      # Runs a single command using the runners shell
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y install pandoc texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive texlive-xetex texlive-fonts-recommended texlive-fonts-extra
             
       #- name: Generate pdf
       #  run: |
       #    pandoc --toc --top-level-division=chapter -f markdown -t pdf README.md Environment_Setup.md C_Language_Info.md Nasm.md Debug.md Multiboot.md Framebuffer.md DrawingTextOnFB.md GDT.md HigherHalf.md InterruptHandling.md RSDP_and_RSDT.md APIC.md Add_Keyboard_Support/README.md Add_Keyboard_Support/InterruptHandling.md Add_Keyboard_Support/DriverImplementation.md Memory_Management/README.md Memory_Management/Physical_Memory.md Memory_Management/Paging.md Memory_Management/Heap_Allocation.md pandoc.yaml -o book3.pdf --pdf-engine=xelatex
 
 
+      - name: Generate pdf
+        run: |
+            which xelatex
+            
