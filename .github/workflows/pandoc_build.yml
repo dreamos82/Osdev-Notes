@@ -26,12 +26,14 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get -y install pandoc texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive texlive-xetex texlive-fonts-recommended texlive-fonts-extra 
+          
+      - name: Generate pdf2
+        run: |
+            which xelatex
+            which pdflatex
             
       - name: Generate pdf
         run: |
           pandoc --toc --top-level-division=chapter -f markdown -t pdf README.md Environment_Setup.md C_Language_Info.md Nasm.md Debug.md Multiboot.md Framebuffer.md DrawingTextOnFB.md GDT.md HigherHalf.md InterruptHandling.md RSDP_and_RSDT.md APIC.md Add_Keyboard_Support/README.md Add_Keyboard_Support/InterruptHandling.md Add_Keyboard_Support/DriverImplementation.md Memory_Management/README.md Memory_Management/Physical_Memory.md Memory_Management/Paging.md Memory_Management/Heap_Allocation.md pandoc.yaml -o book3.pdf --pdf-engine=/usr/bin/xelatex
-
-      - name: Generate pdf2
-        run: |
-            which xelatex
+      
             
